@@ -1,30 +1,6 @@
 #ifndef VMATH
 #define VMATH
 
-struct v4 {
-
-  double x,y,z,a;
-
-  
-  v4 operator+=(v4 &v);
-  v4 operator-=(v4 &v);
-  v4 operator+(v4 &v);
-  v4 operator-(v4 &v);
-  v4 operator-();
-
-
-  double length();
-
-  v4 norm();
-
-  v4 cross(v4 &v);
-
-  double scalar(v4 &v);
-
-  double operator*(v4 &v);
-
-  double angle(v4 &v);
-  };
 
 struct v3
 {
