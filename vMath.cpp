@@ -67,13 +67,13 @@ m4x4 mRotateZ (double phi)
 
   int main() 
   {
-	v4 a = {3,0,0,0};
-	v4 b = {0,3,0,0};
+	v3 a = {3,0,0};
+	v3 b = {0,3,0};
 	b.norm();
-	v4 c = -b;
+	v3 c = -b;
 	double angle = a.angle(b);
-	printf("[%5.2f,%5.2f,%5.2f,%5.2f]\n",a.x,a.y,a.z,a.a);
-	printf("[%5.2f,%5.2f,%5.2f,%5.2f]\n",b.x,b.y,b.z,b.a);
-	printf("[%5.2f,%5.2f,%5.2f,%5.2f]\n",c.x,c.y,c.z,c.a);
+	printf("[%5.2f,%5.2f,%5.2f]\n",a.x,a.y,a.z);
+	printf("[%5.2f,%5.2f,%5.2f]\n",b.x,b.y,b.z);
+	printf("[%5.2f,%5.2f,%5.2f]\n",c.x,c.y,c.z);
   	printf("angle between a and b : %5.2f \n",angle);
   }
