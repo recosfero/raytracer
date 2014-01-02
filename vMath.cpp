@@ -64,7 +64,7 @@ m4x4 mRotateZ (double phi)
 	};
 	return m;
 }
-
+/*
   int main() 
   {
 	v3 a = {3,0,0};
@@ -77,3 +77,4 @@ m4x4 mRotateZ (double phi)
 	printf("[%5.2f,%5.2f,%5.2f]\n",c.x,c.y,c.z);
   	printf("angle between a and b : %5.2f \n",angle);
   }
+*/
