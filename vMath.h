@@ -1,6 +1,8 @@
 #ifndef VMATH
 #define VMATH
 
+#include <cmath>
+#include <stdio.h>
 
 struct v3
 {
@@ -83,6 +85,17 @@ struct v3
 struct m4x4{
 
         double m[4][4];
+        
+       void printMatrix()
+        {
+			printf("[%5.4f,%5.4f,%5.4f,%5.4f] \n",m[0][0],m[0][1],m[0][2],m[0][3]);
+			printf("[%5.4f,%5.4f,%5.4f,%5.4f] \n",m[1][0],m[1][1],m[1][2],m[1][3]);
+			printf("[%5.4f,%5.4f,%5.4f,%5.4f] \n",m[2][0],m[2][1],m[2][2],m[2][3]);
+			printf("[%5.4f,%5.4f,%5.4f,%5.4f] \n\n",m[3][0],m[3][1],m[3][2],m[3][3]);
+
+
+			
+		}
 
         void setIdentity()
         {
@@ -117,20 +130,83 @@ struct m4x4{
         m4x4 mmult(m4x4 b)
         {
                 int i,j,k;
+                double sum;
                 m4x4 c;
                 for (i=0; i<4; i++)
                 {
                         for(j=0;j<4;j++)
                         {
+							sum=0.0;
                                 for(k=0;k<4;k++)
                                 {
-                                        c.m[i][j] += m[i][k] * b.m[k][j];
+									sum += m[i][k] * b.m[k][j];
                                 }
+                            c.m[i][j] = sum;
                         }
                 }
                 return c;
         }
 
+	//get transformation matrix for translation by vector t
+	static m4x4 mTranslate(v3 t)
+	{
+	 m4x4 m = {{
+	 {1,0,0,t.x},
+	 {0,1,0,t.y},
+	 {0,0,1,t.z},
+	 {0,0,0,1}
+	 }};
+	 return m;
+	}
+
+
+	//get matrix for rotation around x axis by phi radians
+	static m4x4 mRotateX (double phi)
+	{
+		m4x4 m = 
+		{
+			{
+				{1,0,0,0},
+				{0,cos(phi),-sin(phi),0},
+				{0,sin(phi),cos(phi),0},
+				{0,0,0,1}
+			}
+		};
+		return m;
+	}
+
+	//get matrix for rotation around y axis by phi radians
+	static m4x4 mRotateY (double phi)
+	{
+		m4x4 m = 
+		{
+			{
+				{cos(phi),0,sin(phi),0},
+				{0,1,0,0},
+				{-sin(phi),0,cos(phi),0},
+				{0,0,0,1}
+			}
+		};
+		return m;
+	}
+
+	//get matrix for rotation around z axis by phi radians
+	static m4x4 mRotateZ (double phi)
+	{
+		m4x4 m = 
+		{
+			{
+				{cos(phi),-sin(phi),0,0},
+				{sin(phi),cos(phi),0,0},
+				{0,0,1,0},
+				{0,0,0,1}
+			}
+		};
+		return m;
+	}
+
 };
+
+
 
 #endif

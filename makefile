@@ -1,0 +1,23 @@
+
+#compiler to use
+CC=g++
+
+CFLAGS=-c -Wall
+
+all: render
+
+render: vMath.o renderer.o general.o
+	$(CC) vMath.o general.o renderer.o -o renderer
+
+vMath.o:
+	$(CC) $(CFLAGS) vMath.cpp
+
+general.o:
+	$(CC) $(CFLAGS) general.cpp
+
+
+renderer.o:
+	$(CC) $(CFLAGS) renderer.cpp
+
+clean:
+	rm -rf *.o
